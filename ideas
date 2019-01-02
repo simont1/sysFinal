@@ -1,0 +1,6 @@
+- Upon executing program, user will be prompted to log in or create account
+- Saving implementation (pipe & fork)
+- Maintaining pipes, making sure there are no data leaks (pipe)
+- error handling (signal)
+- How would two players communicate between each other?
+- Allocating memory for inventory
