@@ -1,0 +1,24 @@
+Simon Tsui -- Systems Final Project
+
+Idea
+The goal of the project is to make a Tamagotchi pet for the user to care for
+
+User Interface
+Text will be displayed on the current info for the pet, its levels, contentedness
+
+Implementation
+
+Front-end: Terminal display of pet information via stdout
+User input received via stdin
+
+Saving Implementation
+Progress can be saved by uploading it to the server, will be stored in different files (pipe, redirect)
+
+Allocated memory
+Different attributes of the pet will be stored in arrays
+
+Signal handling
+Bad user input will be accounted for so the game won't crash.
+
+Multiplayer feature?
+Interacting with one another's pets, two players simultaneously (networking)
