@@ -23,6 +23,7 @@ int main(){
   printf("Changing name to Ditto --> ");
   changeName("Ditto");
   reachStats();
+
   
   return 0; 
 }
