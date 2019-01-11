@@ -9,6 +9,8 @@ char* namegen(){
   return breeds[(rand()%5)] ;
 }
 
+
+
 struct myPets firstPet(){
   dog.name = namegen();
   return dog;
@@ -22,4 +24,5 @@ void reachStats(){
 void changeName(char *newName){
   dog.name = newName;
 }
+
 

@@ -1,6 +1,4 @@
-- Upon executing program, user will be prompted to log in or create account
-- Saving implementation (pipe & fork)
-- Maintaining pipes, making sure there are no data leaks (pipe)
-- error handling (signal)
-- How would two players communicate between each other?
-- Allocating memory for inventory
+Ideas for leveling up your dog
+- maze generator/premade "parks" --> finishing the maze vs that of an opponent
+- interacting with other ppl's dogs
+- generating pages about your dogs for other people to view and interact with 
