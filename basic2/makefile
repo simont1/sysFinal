@@ -6,3 +6,6 @@ main.o: main.c clas.h
 
 clas.o: clas.c clas.h
 	gcc -c clas.c
+
+run:
+	./a.out
