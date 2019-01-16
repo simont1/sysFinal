@@ -17,16 +17,24 @@ int main(){
   // interaction();
   //
   // return 0;
+  srand(time(NULL));
   char input[10];
+  char initName[10];
+  char initBreed[5];
   int status;
 
-  printf("Let's make a pet\n");
-  firstPet();
+  printf("Let's adopt a pet\n");
+  printf("Choose a breed: \n(1) Border Collie \n(2) German Shepherd \n(3) Labrador Retriever \n(4) Akita \n");
+  scanf(" %[^\n]s", initBreed);
+  firstPet(initBreed);
+  printf("Excellent choice\n");
   printf("What is your pet's name? (10 chars max)\n");
-  scanf(" %[^\n]s", input);
-  namegen(input);
+  scanf(" %[^\n]s", initName);
+  namegen(initName);
+  printf("Welcome, %s!\n", initName);
+  //namegen(input);
   while (1){
-    printf("Options: \n(1) Reach Stats \n(2) Interact with pet \n(3) Exit \nInput a number below\n");
+    printf("Options: \n(1) About \n(2) Reach Stats \n(3) Interact with pet \n(4) Dog Training\n(5) Dog Exercise \n(6) Exit \nInput a number below\n");
     scanf(" %[^\n]s", input);
     status = userAction(input);
     if (status == -2){
