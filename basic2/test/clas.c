@@ -143,7 +143,7 @@ void goodBoy(){
   }
   dog.experience += temp;
   printf("Experience gained: %d\n", temp);
-  printf("Obedience increased by %d points!\n", temp1);
+  printf("Obedience increased by %d points!\n", temp1); 
 }
 
 void dogRun(){
