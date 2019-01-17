@@ -185,6 +185,7 @@ int saveProgress(){
   char * file = "test.txt";
   int file_id = open(file, O_WRONLY);
   char * WRString = malloc(10);
+  char * ciphered = malloc(10);
   snprintf(WRString, 15, "%s", dog.name);
   strcat(WRString, "\n");
   printf("%s", WRString);
@@ -226,6 +227,9 @@ int saveProgress(){
 int loadProgress(){
   char * file = "test.txt";
   int file_id = open(file, O_RDONLY);
+  char * temp = malloc(400);
+  read(file_id, temp, 400);
+  printf("%s\n", temp);
   return close(file_id);
 }
 

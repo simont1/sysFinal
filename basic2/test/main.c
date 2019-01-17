@@ -29,6 +29,7 @@ int main(){
   scanf(" %[^\n]s", loadChoice);
   if(!strcmp(loadChoice, "2")){
     secondPet();
+    loadProgress();
   }
   else{
     printf("New pet!\n");
