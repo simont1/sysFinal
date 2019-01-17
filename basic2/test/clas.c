@@ -83,8 +83,19 @@ char * description(){
 }
 
 struct myPets firstPet(char * input){
-  dog.breed = pickBreed(input);
   dog.name = "";
+  dog.breed = pickBreed(input);
+  dog.background = description();
+  dog.experience = 0;
+  dog.friendliness = 0;
+  dog.obedience = 0;
+  dog.strength = 0;
+  return dog;
+}
+
+struct myPets secondPet(){
+  dog.name = "a";
+  dog.breed = "German Shepherd";
   dog.background = description();
   dog.experience = 0;
   dog.friendliness = 0;
@@ -143,7 +154,7 @@ void goodBoy(){
   }
   dog.experience += temp;
   printf("Experience gained: %d\n", temp);
-  printf("Obedience increased by %d points!\n", temp1); 
+  printf("Obedience increased by %d points!\n", temp1);
 }
 
 void dogRun(){
@@ -164,19 +175,58 @@ void dogRun(){
   printf("Strength increased by %d points!\n", temp1);
 }
 
+int findLength(char * str){
+  const char *s;
+  for (s = str; *s; ++s);
+  return(s - str);
+}
+
 int saveProgress(){
   char * file = "test.txt";
   int file_id = open(file, O_WRONLY);
   char * WRString = malloc(10);
+  snprintf(WRString, 15, "%s", dog.name);
+  strcat(WRString, "\n");
+  printf("%s", WRString);
+  int write_size = write(file_id, WRString, findLength(WRString));
+  printf("Write Size: %d\n", write_size);
+  snprintf(WRString, 20, "%s", dog.breed);
+  strcat(WRString, "\n");
+  printf("%s", WRString);
+  write_size = write(file_id, WRString, findLength(WRString));
+  printf("Write Size: %d\n", write_size);
+  snprintf(WRString, 350, "%s", dog.background);
+  strcat(WRString, "\n");
+  printf("%s", WRString);
+  write_size = write(file_id, WRString, findLength(WRString));
+  printf("Write Size: %d\n", write_size);
   snprintf(WRString, 10, "%d", dog.experience);
-  printf("%s\n", WRString);
-  int write_size = write(file_id, WRString, 5);
+  strcat(WRString, "\n");
+  printf("%s", WRString);
+  write_size = write(file_id, WRString, findLength(WRString));
+  printf("Write Size: %d\n", write_size);
+  snprintf(WRString, 10, "%d", dog.friendliness);
+  strcat(WRString, "\n");
+  printf("%s", WRString);
+  write_size = write(file_id, WRString, findLength(WRString));
+  printf("Write Size: %d\n", write_size);
+  snprintf(WRString, 10, "%d", dog.obedience);
+  strcat(WRString, "\n");
+  printf("%s", WRString);
+  write_size = write(file_id, WRString, findLength(WRString));
+  printf("Write Size: %d\n", write_size);
+  snprintf(WRString, 10, "%d", dog.strength);
+  strcat(WRString, "\n");
+  printf("%s", WRString);
+  write_size = write(file_id, WRString, findLength(WRString));
   printf("Write Size: %d\n", write_size);
   return close(file_id);
 }
 
 int loadProgress(){
-  return 1;
+  char * file = "test.txt";
+  int file_id = open(file, O_RDONLY);
+  return close(file_id);
 }
 
 // void changeName(char *newName){
