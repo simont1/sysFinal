@@ -38,7 +38,11 @@ int userAction(char * input){
     dogRun();
     return 1;
   }
-  else if(!strcmp(input,"6")){
+  else if(!strcmp(input, "6")){
+    connect();
+    return 1;
+  }
+  else if(!strcmp(input,"7")){
     return -2;
   }
   else{
@@ -49,31 +53,31 @@ int userAction(char * input){
 char * description(){
   char * details = malloc(100);
   if (!strcmp(dog.breed,"Border Collie")){
-    details = "Border collies are around 19 - 22 inches tall for males and 18 - 21 inches tall for females.\n"
-    "These dogs on average weigh between 30 - 55 pounds.\n"
-    "Border collies have an average life expectancy of 12 - 15 years.\n"
-    "Bright workahloics, agile, balanced, durable, loveable.\n"
+    details = "Border collies are around 19 - 22 inches tall for males and 18 - 21 inches tall for females. "
+    "These dogs on average weigh between 30 - 55 pounds. "
+    "Border collies have an average life expectancy of 12 - 15 years. "
+    "Bright workahloics, agile, balanced, durable, loveable. "
     "2x Bonus on leveling up friendliness\n\0";
   }
   else if (!strcmp(dog.breed,"German Shepherd")){
-    details = "German shepherds are around 24 - 26 inches tall for males and 22 - 24 inches tall for females.\n"
-    "These dogs on average weigh between 50 - 90 pounds.\n"
-    "German Shepherds have an average life expectancy of 7 - 10 years.\n"
-    "Loyal, confident, courageous, and steady.\n"
+    details = "German shepherds are around 24 - 26 inches tall for males and 22 - 24 inches tall for females. "
+    "These dogs on average weigh between 50 - 90 pounds. "
+    "German Shepherds have an average life expectancy of 7 - 10 years. "
+    "Loyal, confident, courageous, and steady. "
     "2x bonus on leveling up obedience\n\0";
   }
   else if (!strcmp(dog.breed,"Labrador Retriever")){
-    details = "Labrador Retrievers are around 22 - 24 inches tall for males and 21 - 23 inches tall for females.\n"
-    "These dogs on average weigh between 55 - 80 pounds.\n"
-    "Labrador Retrievers have an average life expectancy of 10 - 12 years.\n"
-    "Friendly, outgoing, and high-spirited.\n"
+    details = "Labrador Retrievers are around 22 - 24 inches tall for males and 21 - 23 inches tall for females. "
+    "These dogs on average weigh between 55 - 80 pounds. "
+    "Labrador Retrievers have an average life expectancy of 10 - 12 years. "
+    "Friendly, outgoing, and high-spirited. "
     "2x bonus on gaining experience\n\0";
   }
   else if (!strcmp(dog.breed,"Akita")){
-    details = "Akitas are around 26 - 28 inches tall for males and 24 - 26 inches tall for females.\n"
-    "These dogs on average weigh between 70 - 130 pounds.\n"
-    "Akitas have an average life expectancy of 10 -13 years.\n"
-    "Famous for their Dignity, Courage, and Loyalty\n";
+    details = "Akitas are around 26 - 28 inches tall for males and 24 - 26 inches tall for females. "
+    "These dogs on average weigh between 70 - 130 pounds. "
+    "Akitas have an average life expectancy of 10 -13 years. "
+    "Famous for their Dignity, Courage, and Loyalty ";
     "2x bonus on leveling up strength\n\0";
   }
   // else{
@@ -132,6 +136,7 @@ void reachStats(){
   printf("Friendliness Level: %d\n", dog.friendliness);
   printf("Obedience Level: %d\n", dog.obedience);
   printf("Experience: %d\n", dog.experience);
+  printf("Strength: %d\n", dog.strength);
 }
 
 void about(){
@@ -174,6 +179,14 @@ void dogRun(){
   printf("Experience gained: %d\n", temp);
   printf("Strength increased by %d points!\n", temp1);
 }
+
+void connect(){
+  char** args = calloc(2, sizeof(char*));
+  args[0] = "./client";
+  args[1] = NULL;
+  execvp(args[0], args);
+}
+
 
 int findLength(char * str){
   const char *s;

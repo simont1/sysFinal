@@ -41,3 +41,5 @@ void goodBoy();
 void about();
 
 void dogRun();
+
+void connect();

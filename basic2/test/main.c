@@ -49,7 +49,7 @@ int main(){
 
   //namegen(input);
   while (1){
-    printf("Options: \n(1) About \n(2) Reach Stats \n(3) Interact with pet \n(4) Dog Training\n(5) Dog Exercise \n(6) Exit \nInput a number below\n");
+    printf("Options: \n(1) About \n(2) Reach Stats \n(3) Interact with pet \n(4) Dog Training\n(5) Dog Exercise \n(6) Connect \n(7) Exit \nInput a number below\n");
     scanf(" %[^\n]s", input);
     status = userAction(input);
     if (status == -2){
