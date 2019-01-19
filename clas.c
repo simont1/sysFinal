@@ -39,10 +39,14 @@ int userAction(char * input){
     return 1;
   }
   else if(!strcmp(input, "6")){
-    connect();
+    leaderboard();
     return 1;
   }
-  else if(!strcmp(input,"7")){
+  else if(!strcmp(input, "7")){
+    viewLeader();
+    return 1;
+  }
+  else if(!strcmp(input,"8")){
     return -2;
   }
   else{
@@ -180,13 +184,41 @@ void dogRun(){
   printf("Strength increased by %d points!\n", temp1);
 }
 
-void connect(){
+void leaderboard(){
+  saveProgress();
   char** args = calloc(2, sizeof(char*));
   args[0] = "./client";
   args[1] = NULL;
   execvp(args[0], args);
 }
 
+void viewLeader(){
+  char * file = "leaderboard.txt";
+  int file_id = open(file, O_RDONLY);
+  int ctr = 0;
+  char * temp = malloc(256);
+  read(file_id, temp, 256);
+  char ** vars = calloc(strlen(temp), sizeof(char));
+  strsep(&temp, "\n");
+  for(int i = 0; temp; i++){
+    vars[i] = strsep(&temp, "\n");
+    process(vars[i]);
+    if(strcmp(vars[i], "")){
+      printf("Position %d: %s\n", ctr, vars[i]);
+      ctr += 1;
+    }
+  }
+}
+
+void process(char * s) {
+  while (*s) {
+    if (*s >= 'a' && *s <= 'z')
+      *s = ((*s - 'a') + 13) % 26 + 'a';
+    else  if (*s >= 'A' && *s <= 'Z')
+      *s = ((*s - 'a') + 13) % 26 + 'a';
+    s++;
+  }
+}
 
 int findLength(char * str){
   const char *s;
@@ -234,6 +266,7 @@ int saveProgress(){
   printf("%s", WRString);
   write_size = write(file_id, WRString, findLength(WRString));
   printf("Write Size: %d\n", write_size);
+  printf("Saved!");
   return close(file_id);
 }
 
@@ -242,7 +275,22 @@ int loadProgress(){
   int file_id = open(file, O_RDONLY);
   char * temp = malloc(400);
   read(file_id, temp, 400);
-  printf("%s\n", temp);
+  // printf("temp: %s\n", temp);
+  // char * vars = malloc(400);
+  // vars = strsep(&temp, "\n");
+  char** vars = calloc(strlen(temp), sizeof(char*));
+  for(int i = 0; temp; i++ ){
+    vars[i] = strsep(&temp, "\n");
+    // printf("var[%d]: %s\n", i, vars[i]);
+  }
+  dog.name = vars[0];
+  dog.breed = vars[1];
+  dog.background = vars[2];
+  dog.experience = atoi(vars[4]);
+  dog.friendliness = atoi(vars[5]);
+  dog.obedience = atoi(vars[6]);
+  dog.strength = atoi(vars[7]);
+  // printf("vars: %s\n", vars);
   return close(file_id);
 }
 

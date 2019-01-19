@@ -1,4 +1,6 @@
 #include "networking.h"
+#include <fcntl.h>
+#include <unistd.h>
 
 void process(char *s);
 void subserver(int from_client);
@@ -16,7 +18,7 @@ int main() {
 
   listen_socket = server_setup();
 
-  while (1) {
+  // while (1) {
 
     //select() modifies read_fds
     //we must reset it at each iteration
@@ -46,7 +48,21 @@ int main() {
       fgets(buffer, sizeof(buffer), stdin);
       printf("[server] subserver count: %d\n", subserver_count);
     }//end stdin select
-  }
+  // }
+}
+
+int findLength(char * str){
+  const char *s;
+  for (s = str; *s; ++s);
+  return(s - str);
+}
+
+int mysave(char * buffer){
+  char * file = "leaderboard.txt";
+  char * temp = strcat(buffer, "\n");
+  int file_id = open(file, O_WRONLY | O_APPEND);
+  int write_size = write(file_id, temp, findLength(temp));
+  return close(file_id);
 }
 
 void subserver(int client_socket) {
@@ -61,10 +77,15 @@ void subserver(int client_socket) {
     printf("[subserver %d] received: [%s]\n", getpid(), buffer);
     process(buffer);
     write(client_socket, buffer, sizeof(buffer));
+    if(mysave(buffer)){
+      return ;
+    }
   }//end read loop
   close(client_socket);
   exit(0);
 }
+
+
 
 void process(char * s) {
   while (*s) {
